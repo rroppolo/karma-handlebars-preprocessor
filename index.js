@@ -6,7 +6,7 @@ var handlebars = require('handlebars');
  *   - templateName - function that translates original file path to template name
  *   - templates - name of the variable to store the templates hash
  */
-var createHandlebarsPreprocessor = function(args, config, logger, basePath) {
+var createHandlebarsPreprocessor = function(args, config, logger) {
   config = config || {};
 
   var log = logger.create('preprocessor.handlebars');
