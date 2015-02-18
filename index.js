@@ -12,7 +12,7 @@ var createHandlebarsPreprocessor = function(args, config, logger, basePath) {
   var log = logger.create('preprocessor.handlebars');
 
   var transformPath = args.transformPath || config.transformPath || function(filepath) {
-    return filepath.replace(/\.hbs$/, '.js')
+    return filepath.replace(/\.hbs$/, '.js');
   };
 
   var templateName = args.templateName || config.templateName || function(filepath) {
@@ -30,10 +30,9 @@ var createHandlebarsPreprocessor = function(args, config, logger, basePath) {
     var template = templateName(file.originalPath);
 
     try {
-      processed = "(function() {" + templates + " = " + templates + " || {};"
-      + templates + "['" + template + "'] = Handlebars.template("
-      + handlebars.precompile(content)
-      + ");})();";
+      processed = "(function() {" + templates + " = " + templates + " || {};" +
+        templates + "['" + template + "'] = Handlebars.template(" +
+        handlebars.precompile(content) + ");})();";
     } catch (e) {
       log.error('%s\n  at %s', e.message, file.originalPath);
     }

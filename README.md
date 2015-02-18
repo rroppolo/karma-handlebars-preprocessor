@@ -1,38 +1,24 @@
 # karma-handlebars-preprocessor
 
+[![Build Status](https://travis-ci.org/petrbela/karma-handlebars-preprocessor.svg)](https://travis-ci.org/petrbela/karma-handlebars-preprocessor)
+[![npm version](https://badge.fury.io/js/karma-handlebars-preprocessor.svg)](http://badge.fury.io/js/karma-handlebars-preprocessor)
+
 > Preprocessor to compile Handlebars on the fly.
 
 Forked from [hanachin's code](https://github.com/hanachin/karma-handlebars-preprocessor) (kudos!)
 
-Only works with **Karma 0.9 or later** which enables custom plugins.
+Works with **Karma 0.9 or later**.
 
 For more information on Karma see the [homepage].
 
 
 ## Installation
 
-1. Install Karma and karma-osx-reporter plugin. The plugin requires Karma 0.9+, but Karma's stable version is now 0.10 so it's pretty easy.
+1. Install Karma and karma-handlebars-preprocessor plugin.
 
-  a. Globally. System-wide with `karma` available on command line.
-
-    ```
-    npm install -g karma
-    npm install -g karma-handlebars-preprocessor
-    ```
-
-  b. Locally. If you want to install Karma to your project instead, add the dependencies to `package.json` and run `npm install`:
-
-    ```js
-    "devDependencies": {
-      "karma": ">=0.9",
-      "karma-handlebars-preprocessor": "*"
-    }
-    ```
-
-    If you install locally, you'll need to run Karma using `node_modules/.bin/karma`.
-
-  In any case, the plugin needs to be installed as a peer dependency to Karma (i.e. in the sibling folder). This just means you cannot use global Karma with local plugins or vice-versa.
-
+  ```sh
+  $ npm install karma-handlebars-preprocessor --save-dev
+  ```
 
 4. Define it as a reporter in the config file
 
@@ -62,7 +48,6 @@ module.exports = function(config) {
     },
 
     handlebarsPreprocessor: {
-
       // name of the variable to store the templates hash
       templates: "Handlebars.templates",
 
@@ -75,16 +60,10 @@ module.exports = function(config) {
       transformPath: function(path) {
         return path.replace(/\.hbs$/, '.js');
       }
-      
     }
   });
 };
 ```
-
-## Note on version
-
-This plugin precompiles templates using handlebars.js version `1.0.0`. You'll need to provide handlebars.runtime.js of the same version in your page.
-
 
 ## License
 
@@ -92,4 +71,3 @@ MIT License
 
 
 [homepage]: http://karma-runner.github.io
-
