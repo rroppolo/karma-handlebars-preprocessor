@@ -14,13 +14,13 @@ For more information on Karma see the [homepage].
 
 ## Installation
 
-1. Install Karma and karma-handlebars-preprocessor plugin.
+1. Install karma-handlebars-preprocessor plugin.
 
   ```sh
   $ npm install karma-handlebars-preprocessor --save-dev
   ```
 
-4. Define it as a reporter in the config file
+2. Define it as a preprocessor in the config file
 
   ```js
     preprocessors: {
@@ -31,7 +31,7 @@ For more information on Karma see the [homepage].
   or pass through the command line
 
   ```sh
-    $ karma start --preprocessors handlebars karma.conf.js
+    $ karma start --preprocessors handlebars
   ```
 
 
