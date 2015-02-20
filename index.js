@@ -20,6 +20,9 @@ var createHandlebarsPreprocessor = function(args, config, logger) {
   };
 
   var templates = args.templates || config.templates || "Handlebars.templates";
+  var partials = args.partials || config.partials || "Handlebars.partials";
+  var isPartial = args.isPartial || config.isPartial || function (path) { return false; };
+
 
   return function(content, file, done) {
     var processed = null;
@@ -29,14 +32,24 @@ var createHandlebarsPreprocessor = function(args, config, logger) {
 
     var template = templateName(file.originalPath);
 
-    try {
-      processed = "(function() {" + templates + " = " + templates + " || {};" +
-        templates + "['" + template + "'] = Handlebars.template(" +
-        handlebars.precompile(content) + ");})();";
-    } catch (e) {
-      log.error('%s\n  at %s', e.message, file.originalPath);
+    if (isPartial(file.originalPath)) {
+      try {
+        processed = "(function() {" + partials + " = " + partials + " || {};" +
+          partials + "['" + template + "'] = Handlebars.template(" +
+          handlebars.precompile(content) + ");})();";
+      } catch (e) {
+        log.error('%s\n  at %s', e.message, file.originalPath);
+      }
     }
-
+    else {
+      try {
+        processed = "(function() {" + templates + " = " + templates + " || {};" +
+          templates + "['" + template + "'] = Handlebars.template(" +
+          handlebars.precompile(content) + ");})();";
+      } catch (e) {
+        log.error('%s\n  at %s', e.message, file.originalPath);
+      }
+    }
     done(processed);
   };
 };
